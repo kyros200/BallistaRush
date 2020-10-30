@@ -70,7 +70,7 @@ public class Ballista : MonoBehaviour
         GameObject arrow = Instantiate(
                         arrowPrefab,
                         transform.position,
-                        Quaternion.Euler(0f, 0f, MathHelper.getAngle(direction) + 90f)) as GameObject;
+                        Quaternion.Euler(0f, 0f, MathHelper.getAngle(direction))) as GameObject;
         arrow.GetComponent<Rigidbody2D>().velocity = direction.normalized * 300f * Time.deltaTime;
     }
 
