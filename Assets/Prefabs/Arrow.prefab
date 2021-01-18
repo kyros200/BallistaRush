@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1291619952296590161}
   - component: {fileID: 1291619952296590160}
   - component: {fileID: 8198279413782095592}
+  - component: {fileID: 5841288823618398116}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: PlayerArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,3 +120,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.09, y: 0.37}
   m_Direction: 0
+--- !u!114 &5841288823618398116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291619952296590163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8ffe3cde93309409bf86ac19efca85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
