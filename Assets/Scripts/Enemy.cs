@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag != "Shredder")
+        if(collision.tag != "Shredder" && collision.tag != "Enemy")
             Destroy(gameObject);
     }
 }
