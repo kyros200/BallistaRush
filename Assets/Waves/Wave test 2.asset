@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Wave test 2
   m_EditorClassIdentifier: 
   difficulty: 30
-  enemies: []
+  enemies:
+  - {fileID: 7848529634365410216, guid: 33005bd14daebd54f97b494c13df16ef, type: 3}
+  - {fileID: 6830123419466686390, guid: 6b0460c28e4e7004884d85432840f05b, type: 3}
+  - {fileID: 3229101968732479429, guid: 98a2632bd5360a445b36369d137e5ac7, type: 3}

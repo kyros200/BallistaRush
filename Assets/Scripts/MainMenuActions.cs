@@ -6,16 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuActions : MonoBehaviour
 {
-    [SerializeField] Button play = null;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void PlayGame()
     {
         SceneManager.LoadScene("MainGame");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void UpgradeMenu()
+    {
+        SceneManager.LoadScene("UpgradeMenu");
     }
 }

@@ -55,16 +55,20 @@ public class EnemyManager : MonoBehaviour
             actualCooldown -= Time.deltaTime;
             if (actualCooldown <= 0)
             {
-                int selectedWave = Random.Range(0, Waves.Count);
+                //Get random avaiable Wave to get the enemies from it
+                int selectedWave = Random.Range(0, avaiablesWaves.Count);
+                List<Enemy> enemies = avaiablesWaves[selectedWave].getEnemies();
 
+                //Update Game Session
+                actualSession.AddEnemiesAlive(enemies.Count);
                 actualSession.AddActualDifficulty(Waves[selectedWave].getDifficulty() * -1);
 
-                List<Enemy> enemies = Waves[selectedWave].getEnemies();
-
+                //Spawn enemies
                 SpawnEnemies(enemies);
+
+                //Reset Cooldown for next wave
                 actualCooldown = cooldown;
             }
         }
-
     }
 }

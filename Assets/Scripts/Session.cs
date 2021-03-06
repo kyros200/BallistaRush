@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Session : MonoBehaviour
 {
     [SerializeField] int difficulty = 100;
     [SerializeField] int actualDifficulty = 100;
+
+    [SerializeField] int enemiesAlive = 0;
 
     void SetSingleton()
     {
@@ -44,18 +47,25 @@ public class Session : MonoBehaviour
         actualDifficulty = difficulty;
     }
 
-    bool ItsOver()
+    void ItsOver()
     {
-        if (actualDifficulty <= 0)
+        if (actualDifficulty <= 0 && enemiesAlive <= 0)
         {
-            Debug.Log("Acabou!!! Venceu a Wave!!!");
-            return (true);
+            AddDifficulty(Mathf.FloorToInt(GetDifficulty() * 0.05f));
+            RestartDifficulty();
+            SceneManager.LoadScene("UpgradeMenu");
         }
-        else
-        {
-            Debug.Log("Ainda tem mais!!!");
-            return (false);
-        }
+    }
+
+    public int GetEnemiesAlive()
+    {
+        return enemiesAlive;
+    }
+
+    public void AddEnemiesAlive(int amount)
+    {
+        enemiesAlive += amount;
+        ItsOver();
     }
 
     void Start()
