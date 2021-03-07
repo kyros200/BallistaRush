@@ -2,11 +2,11 @@
 
 public static class DebugHelper
 {
-    static bool isActive = true;
+    static bool IsActive = true;
 
     public static void drawBallistaToMouseDistance(Vector3 bp)
     {
-        if (isActive)
+        if (IsActive)
         {
             Debug.DrawLine(bp, MathHelper.getWorldMousePosition(), Color.white, 0.05f);
         }

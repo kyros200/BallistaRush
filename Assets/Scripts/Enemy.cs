@@ -8,11 +8,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] float Velocity = 50f;
     [SerializeField] float Damage = 10f;
 
-    Session actualSession;
+    Session ActualSession;
 
     void Die()
     {
-        actualSession.AddEnemiesAlive(-1);
+        ActualSession.AddEnemiesAlive(-1);
         Destroy(gameObject);
     }
 
@@ -25,20 +25,20 @@ public class Enemy : MonoBehaviour
     {
         name = Name;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Velocity*-1, 0) * Time.deltaTime;
-        actualSession = FindObjectOfType<Session>();
+        ActualSession = FindObjectOfType<Session>();
         ActualHealth = Health;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Arrow tmp = collision.gameObject.GetComponent<Arrow>();
-        if (tmp)
+        Arrow arrow = collision.gameObject.GetComponent<Arrow>();
+        if (arrow)
         {
-            AddHealth(tmp.GetDamage() * -1); //Remove Health because is causing Damage to the enemy
+            AddHealth(arrow.GetDamage() * -1); //Remove Health because is causing Damage to the enemy
             if(Health <= 0f)
                 Die();
 
-            Debug.LogFormat("{0} was hit by {1} with {2} Damage! Ouch!", gameObject.name, tmp.name, tmp.GetDamage().ToString());
+            Debug.LogFormat("{0} was hit by {1} with {2} Damage! Ouch!", gameObject.name, arrow.name, arrow.GetDamage().ToString());
         }
     }
 }

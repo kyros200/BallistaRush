@@ -5,25 +5,25 @@ public class Ballista : MonoBehaviour
 {
     [Header("Projectile Info")]
     [SerializeField] Vector2 direction;
-    [SerializeField] GameObject arrowPrefab = null;
+    [SerializeField] GameObject ArrowPrefab = null;
     [Header("Shoot Info")]
-    [SerializeField] float attackSpeed = 1.5f;
-    [SerializeField] float attackCD= 0f;
+    [SerializeField] float AttackSpeed = 1.5f;
+    [SerializeField] float AttackCD= 0f;
     [Header("Ammo Info")]
-    [SerializeField] int ammo = 5;
-    [SerializeField] Text ammoText = null;
+    [SerializeField] int Ammo = 5;
+    [SerializeField] Text AmmoText = null;
     [Header("Reload Info")]
-    [SerializeField] Slider ammoCDUI = null;
-    [SerializeField] float ammoCD = 4f;
-    [SerializeField] int maxAmmo = 5;
+    [SerializeField] Slider AmmoCDUI = null;
+    [SerializeField] float AmmoCD = 4f;
+    [SerializeField] int MaxAmmo = 5;
     [SerializeField] float reloadSpeed = 4f;
 
     private void Start()
     {
-        //Prepare ammo text and reload slider
-        ammoText.text = ammo.ToString();
-        ammoCDUI.maxValue = ammoCD;
-        ammoCDUI.value = ammoCDUI.maxValue;
+        //Prepare Ammo text and reload slider
+        AmmoText.text = Ammo.ToString();
+        AmmoCDUI.maxValue = AmmoCD;
+        AmmoCDUI.value = AmmoCDUI.maxValue;
     }
 
     void Update()
@@ -35,32 +35,32 @@ public class Ballista : MonoBehaviour
         {
             DebugHelper.drawBallistaToMouseDistance(gameObject.transform.position);
             getDirection();
-            if (attackCD <= 0f && ammo > 0)
+            if (AttackCD <= 0f && Ammo > 0)
             {
                 fire();
-                ammo -= 1;
-                ammoText.text = ammo.ToString();
-                attackCD = attackSpeed;
+                Ammo -= 1;
+                AmmoText.text = Ammo.ToString();
+                AttackCD = AttackSpeed;
             }
         }
     }
 
     private void tickTime()
     {
-        if (attackCD > 0f)
+        if (AttackCD > 0f)
         {
-            attackCD -= Time.deltaTime;
+            AttackCD -= Time.deltaTime;
         }
-        if (ammo == 0)
+        if (Ammo == 0)
         {
-            ammoCD -= Time.deltaTime;
-            ammoCDUI.value -= Time.deltaTime;
-            if (ammoCD <= 0f)
+            AmmoCD -= Time.deltaTime;
+            AmmoCDUI.value -= Time.deltaTime;
+            if (AmmoCD <= 0f)
             {
-                ammo = maxAmmo;
-                ammoText.text = ammo.ToString();
-                ammoCD = reloadSpeed;
-                ammoCDUI.value = ammoCDUI.maxValue;
+                Ammo = MaxAmmo;
+                AmmoText.text = Ammo.ToString();
+                AmmoCD = reloadSpeed;
+                AmmoCDUI.value = AmmoCDUI.maxValue;
             }
         }
     }
@@ -68,7 +68,7 @@ public class Ballista : MonoBehaviour
     private void fire()
     {
         GameObject arrow = Instantiate(
-            arrowPrefab,
+            ArrowPrefab,
             transform.position,
             Quaternion.Euler(0f, 0f, MathHelper.getAngle(direction) + 90f)
         ) as GameObject;
