@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3229101968732479429}
   - component: {fileID: 6272188597100270343}
   m_Layer: 0
-  m_Name: enemy4
+  m_Name: Ranged
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab04bc3d61b2f8144ac8146aad4b9255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Ranged
+  Health: 20
+  Velocity: 40
+  Damage: 10
 --- !u!60 &6272188597100270343
 PolygonCollider2D:
   m_ObjectHideFlags: 0

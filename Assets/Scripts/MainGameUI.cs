@@ -11,7 +11,7 @@ public class MainGameUI : MonoBehaviour
     Session actualSession;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         actualSession = FindObjectOfType<Session>();
         if (!actualSession)

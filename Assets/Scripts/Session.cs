@@ -7,8 +7,9 @@ public class Session : MonoBehaviour
 {
     [SerializeField] int difficulty = 100;
     [SerializeField] int actualDifficulty = 100;
-
     [SerializeField] int enemiesAlive = 0;
+
+    [SerializeField] float Damage = 10f;
 
     void SetSingleton()
     {
@@ -29,6 +30,11 @@ public class Session : MonoBehaviour
     public int GetActualDifficulty()
     {
         return actualDifficulty;
+    }
+
+    public float GetDamage()
+    {
+        return Damage;
     }
 
     public void AddDifficulty(int amount)
