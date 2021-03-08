@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
     float ActualHealth;
     [SerializeField] float Velocity = 50f;
     [SerializeField] float Damage = 10f;
+    [SerializeField] TextMeshProUGUI HealthText = null;
 
     Session ActualSession;
 
@@ -29,6 +31,11 @@ public class Enemy : MonoBehaviour
         ActualHealth = Health;
     }
 
+    private void Update()
+    {
+        HealthText.text = Health.ToString("F0");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Arrow arrow = collision.gameObject.GetComponent<Arrow>();
@@ -38,7 +45,7 @@ public class Enemy : MonoBehaviour
             if(Health <= 0f)
                 Die();
 
-            Debug.LogFormat("{0} was hit by {1} with {2} Damage! Ouch!", gameObject.name, arrow.name, arrow.GetDamage().ToString());
+            Debug.LogFormat("{0} was hit by {1} with {2} Damage", gameObject.name, arrow.name, arrow.GetDamage().ToString());
         }
     }
 }
