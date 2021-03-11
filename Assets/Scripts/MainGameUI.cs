@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainGameUI : MonoBehaviour
 {
-    [SerializeField] Text difficulty = null;
-    [SerializeField] Text enemiesAlive = null;
+    [SerializeField] TextMeshProUGUI difficulty = null;
+    [SerializeField] TextMeshProUGUI enemiesAlive = null;
     Session actualSession;
 
     // Start is called before the first frame update
