@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 544119463514715225}
   - component: {fileID: 544119463514715224}
+  - component: {fileID: 1637664195}
+  - component: {fileID: 1637664196}
   m_Layer: 0
   m_Name: Session
   m_TagString: Untagged
@@ -41,5 +43,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9782a22be46f6c844a70564d32457f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 100
+  actualDifficulty: 100
+  enemiesAlive: 0
+  Damage: 10
+--- !u!114 &1637664195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544119463514715227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e679a834d7792f49bc9a67b07947d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSpeed: 0.5
+  AttackCD: 0
+  Ammo: 5
+  AmmoCD: 2
+  MaxAmmo: 5
+  reloadSpeed: 2
+--- !u!114 &1637664196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544119463514715227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0c629919484b047989f54f32dc39bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

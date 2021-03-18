@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] float actualCooldown = 3f;
     [SerializeField] float cooldown = 3f;
 
-    Session actualSession = null;
+    NightSession actualSession = null;
 
     List<Wave> FilterWaves()
     {
@@ -43,7 +43,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        actualSession = FindObjectOfType<Session>();
+        actualSession = FindObjectOfType<NightSession>();
     }
 
     void Update()

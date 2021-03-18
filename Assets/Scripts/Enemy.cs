@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float Damage = 10f;
     [SerializeField] TextMeshProUGUI HealthText = null;
 
-    Session ActualSession;
+    NightSession ActualSession;
 
     void Die()
     {
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     {
         name = Name;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Velocity*-1, 0) * Time.deltaTime;
-        ActualSession = FindObjectOfType<Session>();
+        ActualSession = FindObjectOfType<NightSession>();
         ActualHealth = Health;
     }
 

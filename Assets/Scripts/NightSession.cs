@@ -3,25 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Session : MonoBehaviour
+public class NightSession : MonoBehaviour
 {
+    [Header("Difficulty")]
     [SerializeField] int difficulty = 100;
     [SerializeField] int actualDifficulty = 100;
+    [Space]
     [SerializeField] int enemiesAlive = 0;
 
     [SerializeField] float Damage = 10f;
-
-    void SetSingleton()
-    {
-        GameObject itExists = GameObject.Find("Session");
-
-        if (FindObjectsOfType<Session>().Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     public int GetDifficulty()
     {
@@ -72,10 +62,5 @@ public class Session : MonoBehaviour
     {
         enemiesAlive += amount;
         ItsOver();
-    }
-
-    void Start()
-    {
-        SetSingleton();
     }
 }

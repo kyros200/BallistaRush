@@ -317,7 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9cad34fe46207468cc99bc44a28deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  play: {fileID: 0}
 --- !u!4 &790178128
 Transform:
   m_ObjectHideFlags: 0
@@ -610,6 +609,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416434525}
   m_CullTransparentMesh: 0
+--- !u!1 &1637664194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 544119463514715227, guid: 3dc00205ae580b44eb78e3f65d7ddbd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 544119461843215678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1637664195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637664194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e679a834d7792f49bc9a67b07947d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+  ArrowPrefab: {fileID: 1291619952296590163, guid: ba525bddd9932f0449d80b3f2856cf3e,
+    type: 3}
+  AttackSpeed: 1.5
+  AttackCD: 0
+  Ammo: 5
+  AmmoCD: 4
+  MaxAmmo: 5
+  reloadSpeed: 4
+--- !u!114 &1637664196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637664194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0c629919484b047989f54f32dc39bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &544119461843215678
 PrefabInstance:
   m_ObjectHideFlags: 0
