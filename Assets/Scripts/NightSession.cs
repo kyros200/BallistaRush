@@ -11,8 +11,6 @@ public class NightSession : MonoBehaviour
     [Space]
     [SerializeField] int enemiesAlive = 0;
 
-    [SerializeField] float Damage = 10f;
-
     public int GetDifficulty()
     {
         return difficulty;
@@ -20,11 +18,6 @@ public class NightSession : MonoBehaviour
     public int GetActualDifficulty()
     {
         return actualDifficulty;
-    }
-
-    public float GetDamage()
-    {
-        return Damage;
     }
 
     public void AddDifficulty(int amount)

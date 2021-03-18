@@ -13,6 +13,8 @@ public class PlayerSession : MonoBehaviour
     [Header("Reload Info")]
     [SerializeField] float timeToReload = 2f;
     [SerializeField] float actualTimeToReload = 2f;
+    [Header("Damage Info")]
+    [SerializeField] float damage = 10f;
 
     public int GetAmmo()
     {
@@ -72,5 +74,10 @@ public class PlayerSession : MonoBehaviour
     public float GetTimeToReload()
     {
         return timeToReload;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

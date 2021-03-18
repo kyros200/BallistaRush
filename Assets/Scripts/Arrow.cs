@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    NightSession ActualSession;
+    PlayerSession playerSession;
 
     public float GetDamage()
     {
-        return ActualSession.GetDamage();
+        return playerSession.GetDamage();
     }
 
     private void Start()
     {
-        name = "Arrow";
-        ActualSession = FindObjectOfType<NightSession>();
+        name = "Arrow"; // This is for someday have different kind of arrows
+        playerSession = FindObjectOfType<PlayerSession>();
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
