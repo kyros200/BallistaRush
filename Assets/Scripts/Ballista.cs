@@ -3,19 +3,15 @@ using UnityEngine.UI;
 
 public class Ballista : MonoBehaviour
 {
-    [Header("Projectile Info")]
-    Vector2 direction;
     [SerializeField] GameObject ArrowPrefab = null;
+    
+    Vector2 direction;
 
-    PlayerSession playerSection = null;
+    PlayerSession playerSession = null;
 
     private void Start()
     {
-        playerSection = FindObjectOfType<PlayerSession>();
-        //Prepare Ammo text and reload slider
-        //AmmoText.text = Ammo.ToString();
-        //AmmoCDUI.maxValue = AmmoCD;
-        //AmmoCDUI.value = AmmoCDUI.maxValue;
+        playerSession = FindObjectOfType<PlayerSession>();
     }
 
     void Update()
@@ -27,28 +23,28 @@ public class Ballista : MonoBehaviour
         {
             DebugHelper.drawBallistaToMouseDistance(gameObject.transform.position);
             getDirection();
-            if (playerSection.GetAttackCD() <= 0f && playerSection.GetAmmo() > 0)
+            if (playerSession.GetActualTimeToNextShot() <= 0f && playerSession.GetAmmo() > 0)
             {
                 fire();
-                playerSection.AddAmmo(-1);
-                playerSection.SetAttackCD(playerSection.GetAttackSpeed());
+                playerSession.AddAmmo(-1);
+                playerSession.SetActualTimeToNextShot(playerSession.GetTimeToNextShot());
             }
         }
     }
 
     private void tickTime()
     {
-        if (playerSection.GetAttackCD() > 0f)
+        if (playerSession.GetActualTimeToNextShot() > 0f)
         {
-            playerSection.SetAttackCD(playerSection.GetAttackCD() - Time.deltaTime);
+            playerSession.SetActualTimeToNextShot(playerSession.GetActualTimeToNextShot() - Time.deltaTime);
         }
-        if (playerSection.GetAmmo() == 0)
+        if (playerSession.GetAmmo() == 0)
         {
-            playerSection.SetAmmoCD(playerSection.GetAmmoCD() - Time.deltaTime);
-            if (playerSection.GetAmmoCD() <= 0f)
+            playerSession.SetActualTimeToReload(playerSession.GetActualTimeToReload() - Time.deltaTime);
+            if (playerSession.GetActualTimeToReload() <= 0f)
             {
-                playerSection.SetAmmo(playerSection.GetMaxAmmo());
-                playerSection.SetAmmoCD(playerSection.GetReloadSpeed());
+                playerSession.SetAmmo(playerSession.GetMaxAmmo());
+                playerSession.SetActualTimeToReload(playerSession.GetTimeToReload());
             }
         }
     }

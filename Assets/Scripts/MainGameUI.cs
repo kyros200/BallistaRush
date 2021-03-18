@@ -17,7 +17,6 @@ public class MainGameUI : MonoBehaviour
     NightSession nightSession;
     PlayerSession playerSession;
 
-    // Start is called before the first frame update
     void Awake()
     {
         nightSession = FindObjectOfType<NightSession>();
@@ -30,7 +29,7 @@ public class MainGameUI : MonoBehaviour
 
     private void Start()
     {
-        AmmoCD.maxValue = playerSession.GetReloadSpeed();
+        AmmoCD.maxValue = playerSession.GetTimeToReload();
     }
 
     // Update is called once per frame
@@ -41,6 +40,6 @@ public class MainGameUI : MonoBehaviour
         enemiesAlive.text = "Enemies Alive: " + nightSession.GetEnemiesAlive().ToString();
         //Player UI
         ammo.text = playerSession.GetAmmo().ToString();
-        AmmoCD.value = playerSession.GetAmmoCD();
+        AmmoCD.value = playerSession.GetActualTimeToReload();
     }
 }

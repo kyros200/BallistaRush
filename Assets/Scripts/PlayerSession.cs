@@ -1,77 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerSession : MonoBehaviour
 {
-    [Header("Shoot Info")]
-    [SerializeField] float AttackSpeed = 0.5f;
-    [SerializeField] float AttackCD = 0f;
+    [Header("Shot Info")]
+    [SerializeField] float timeToNextShot = 0.5f;
+    [SerializeField] float actualTimeToNextShot = 0f;
     [Header("Ammo Info")]
-    [SerializeField] int Ammo = 5;
+    [SerializeField] int ammo = 5;
+    [SerializeField] int maxAmmo = 5;
     [Header("Reload Info")]
-    [SerializeField] float AmmoCD = 2f;
-    [SerializeField] int MaxAmmo = 5;
-    [SerializeField] float reloadSpeed = 2f;
+    [SerializeField] float timeToReload = 2f;
+    [SerializeField] float actualTimeToReload = 2f;
 
     public int GetAmmo()
     {
-        return Ammo;
+        return ammo;
     }
 
     public void SetAmmo(int val)
     {
-        Ammo = val;
-    }
-
-    public int GetMaxAmmo()
-    {
-        return MaxAmmo;
-    }
-
-    public void SetMaxAmmo(int val)
-    {
-        MaxAmmo = val;
+        ammo = val;
     }
 
     public void AddAmmo(int val)
     {
-        Ammo += val;
+        ammo += val;
     }
 
-    public float GetAttackSpeed()
+    public int GetMaxAmmo()
     {
-        return AttackSpeed;
+        return maxAmmo;
     }
 
-    public void SetAttackSpeed(float val)
+    public void SetMaxAmmo(int val)
     {
-        AttackSpeed = val;
+        maxAmmo = val;
     }
 
-    public float GetAttackCD()
+    public float GetTimeToNextShot()
     {
-        return AttackCD;
+        return timeToNextShot;
     }
 
-    public void SetAttackCD(float val)
+    public void SetTimeToNextShot(float val)
     {
-        AttackCD = val;
+        timeToNextShot = val;
     }
 
-    public float GetAmmoCD()
+    public float GetActualTimeToNextShot()
     {
-        return AmmoCD;
+        return actualTimeToNextShot;
     }
 
-    public void SetAmmoCD(float val)
+    public void SetActualTimeToNextShot(float val)
     {
-        AmmoCD = val;
+        actualTimeToNextShot = val;
     }
 
-    public float GetReloadSpeed()
+    public float GetActualTimeToReload()
     {
-        return reloadSpeed;
+        return actualTimeToReload;
+    }
+
+    public void SetActualTimeToReload(float val)
+    {
+        actualTimeToReload = val;
+    }
+
+    public float GetTimeToReload()
+    {
+        return timeToReload;
     }
 }
