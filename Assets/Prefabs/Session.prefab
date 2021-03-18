@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544119463514715227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7213426, y: 2.1808746, z: 228.40039}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,7 +48,6 @@ MonoBehaviour:
   difficulty: 100
   actualDifficulty: 100
   enemiesAlive: 0
-  Damage: 10
 --- !u!114 &1637664195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,12 +60,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e679a834d7792f49bc9a67b07947d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackSpeed: 0.5
-  AttackCD: 0
-  Ammo: 5
-  AmmoCD: 2
-  MaxAmmo: 5
-  reloadSpeed: 2
+  timeToNextShot: 0.5
+  actualTimeToNextShot: 0
+  ammo: 5
+  maxAmmo: 5
+  timeToReload: 2
+  actualTimeToReload: 2
+  damage: 10
 --- !u!114 &1637664196
 MonoBehaviour:
   m_ObjectHideFlags: 0
