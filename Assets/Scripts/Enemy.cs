@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
             if(Health <= 0f)
                 Die();
 
-            Debug.LogFormat("{0} was hit by {1} with {2} Damage", gameObject.name, arrow.name, arrow.GetDamage().ToString());
+            //Debug.LogFormat("{0} was hit by {1} with {2} Damage", gameObject.name, arrow.name, arrow.GetDamage().ToString());
         }
     }
 }

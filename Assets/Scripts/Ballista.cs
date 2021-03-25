@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
+using UniRx.Triggers;
+using System;
 
 public class Ballista : MonoBehaviour
 {
@@ -9,48 +12,38 @@ public class Ballista : MonoBehaviour
 
     PlayerSession playerSession = null;
 
+    DateTimeOffset timeToNextShot;
+
     private void Start()
     {
         playerSession = FindObjectOfType<PlayerSession>();
-    }
 
-    void Update()
-    {
-        //Update time. Counts shoot and reload CD
-        tickTime();
-        //Check if the mouse is pressed. 
-        if (Input.GetMouseButton(0))
-        {
-            DebugHelper.drawBallistaToMouseDistance(gameObject.transform.position);
-            getDirection();
-            if (playerSession.GetActualTimeToNextShot() <= 0f && playerSession.GetAmmo() > 0)
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetMouseButton(0))
+            .Timestamp()
+            .Where(x => x.Timestamp > timeToNextShot.AddSeconds(playerSession.GetTimeToNextShot()) && playerSession.GetAmmo() > 0)
+            .Subscribe(x =>
             {
+                timeToNextShot = x.Timestamp;
                 fire();
-                playerSession.AddAmmo(-1);
-                playerSession.SetActualTimeToNextShot(playerSession.GetTimeToNextShot());
-            }
-        }
-    }
+            });
 
-    private void tickTime()
-    {
-        if (playerSession.GetActualTimeToNextShot() > 0f)
-        {
-            playerSession.SetActualTimeToNextShot(playerSession.GetActualTimeToNextShot() - Time.deltaTime);
-        }
-        if (playerSession.GetAmmo() == 0)
-        {
-            playerSession.SetActualTimeToReload(playerSession.GetActualTimeToReload() - Time.deltaTime);
-            if (playerSession.GetActualTimeToReload() <= 0f)
+        this.UpdateAsObservable()
+            .Where(_ => playerSession.GetAmmo() == 0)
+            .ThrottleFirst(TimeSpan.FromSeconds(playerSession.GetTimeToReload()))
+            .Delay(TimeSpan.FromSeconds(playerSession.GetTimeToReload()))
+            .Subscribe(_ =>
             {
                 playerSession.SetAmmo(playerSession.GetMaxAmmo());
-                playerSession.SetActualTimeToReload(playerSession.GetTimeToReload());
-            }
-        }
+            });
     }
 
     private void fire()
     {
+        playerSession.AddAmmo(-1);
+
+        getDirection();
+
         GameObject arrow = Instantiate(
             ArrowPrefab,
             transform.position,
