@@ -6,7 +6,6 @@ public class PlayerSession : MonoBehaviour
 {
     [Header("Shot Info")]
     [SerializeField] float timeToNextShot = 0.5f;
-    [SerializeField] float actualTimeToNextShot = 0f;
     [Header("Ammo Info")]
     [SerializeField] int ammo = 5;
     [SerializeField] int maxAmmo = 5;
@@ -49,16 +48,6 @@ public class PlayerSession : MonoBehaviour
     public void SetTimeToNextShot(float val)
     {
         timeToNextShot = val;
-    }
-
-    public float GetActualTimeToNextShot()
-    {
-        return actualTimeToNextShot;
-    }
-
-    public void SetActualTimeToNextShot(float val)
-    {
-        actualTimeToNextShot = val;
     }
 
     public float GetActualTimeToReload()

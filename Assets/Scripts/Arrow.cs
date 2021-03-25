@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx.Triggers;
+using UniRx;
 
 public class Arrow : MonoBehaviour
 {
@@ -15,10 +17,11 @@ public class Arrow : MonoBehaviour
     {
         name = "Arrow"; // This is for someday have different kind of arrows
         playerSession = FindObjectOfType<PlayerSession>();
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(gameObject);
+
+        this.OnTriggerEnter2DAsObservable()
+            .Subscribe(x =>
+            {
+                Destroy(gameObject);
+            });
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UniRx;
 
 public class MainGameUI : MonoBehaviour
 {
@@ -29,17 +30,33 @@ public class MainGameUI : MonoBehaviour
 
     private void Start()
     {
-        AmmoCD.maxValue = playerSession.GetTimeToReload();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         //Night UI
-        difficulty.text = nightSession.GetActualDifficulty().ToString();
-        enemiesAlive.text = "Enemies Alive: " + nightSession.GetEnemiesAlive().ToString();
+        this.ObserveEveryValueChanged(x => x.nightSession.GetActualDifficulty())
+            .Subscribe(x =>
+            {
+                difficulty.text = nightSession.GetActualDifficulty().ToString();
+            });
+
+        this.ObserveEveryValueChanged(x => x.nightSession.GetEnemiesAlive())
+            .Subscribe(x =>
+            {
+                enemiesAlive.text = "Enemies Alive: " + nightSession.GetEnemiesAlive().ToString();
+            });
+
         //Player UI
-        ammo.text = playerSession.GetAmmo().ToString();
-        AmmoCD.value = playerSession.GetActualTimeToReload();
+        AmmoCD.maxValue = playerSession.GetTimeToReload();
+
+        this.ObserveEveryValueChanged(x => x.playerSession.GetAmmo())
+            .Subscribe(x =>
+            {
+                ammo.text = playerSession.GetAmmo().ToString();
+            });
+
+        this.ObserveEveryValueChanged(x => x.playerSession.GetActualTimeToReload())
+            .Subscribe(x =>
+            {
+                AmmoCD.value = playerSession.GetActualTimeToReload();
+            });
     }
 }
