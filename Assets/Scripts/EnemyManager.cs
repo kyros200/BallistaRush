@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx.Triggers;
+using UniRx;
+using System;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] List<Wave> Waves = null;
-    [SerializeField] float actualCooldown = 3f;
     [SerializeField] float cooldown = 3f;
+
+    List<Wave> avaiableWaves = new List<Wave>();
 
     NightSession actualSession = null;
 
@@ -35,7 +40,7 @@ public class EnemyManager : MonoBehaviour
                 enemies[i],
                 new Vector2(
                     9,
-                    Random.Range(-4.5f, 4.5f)),
+                    UnityEngine.Random.Range(-4.5f, 4.5f)),
                     Quaternion.identity
                 );
         }
@@ -44,31 +49,33 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         actualSession = FindObjectOfType<NightSession>();
-    }
 
-    void Update()
-    {
-        List<Wave> avaiablesWaves = FilterWaves();
-
-        if(avaiablesWaves.Count > 0)
-        {
-            actualCooldown -= Time.deltaTime;
-            if (actualCooldown <= 0)
+        this.UpdateAsObservable()
+            .Subscribe(_ =>
             {
-                //Get random avaiable Wave to get the enemies from it
-                int selectedWave = Random.Range(0, avaiablesWaves.Count);
-                List<Enemy> enemies = avaiablesWaves[selectedWave].getEnemies();
+                avaiableWaves = FilterWaves();
+            });
 
-                //Update Game Session
-                actualSession.AddEnemiesAlive(enemies.Count);
-                actualSession.AddActualDifficulty(Waves[selectedWave].getDifficulty() * -1);
+        this.UpdateAsObservable()
+            .Where(_ => avaiableWaves.Count > 0)
+            .ThrottleFirst(TimeSpan.FromSeconds(cooldown))
+            .Delay(TimeSpan.FromSeconds(cooldown))
+            .Subscribe(_ =>
+            {
+                if (SceneManager.GetActiveScene().name == "MainGame")
+                {
+                    //Get random avaiable Wave to get the enemies from it
+                    int selectedWave = UnityEngine.Random.Range(0, avaiableWaves.Count);
+                    List<Enemy> enemies = avaiableWaves[selectedWave].getEnemies();
 
-                //Spawn enemies
-                SpawnEnemies(enemies);
+                    //Update Game Session
+                    actualSession.AddEnemiesAlive(enemies.Count);
+                    actualSession.AddActualDifficulty(Waves[selectedWave].getDifficulty() * -1);
 
-                //Reset Cooldown for next wave
-                actualCooldown = cooldown;
-            }
-        }
+                    //Spawn enemies
+                    SpawnEnemies(enemies);
+                }
+
+            });
     }
 }

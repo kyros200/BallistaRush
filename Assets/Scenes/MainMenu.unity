@@ -754,5 +754,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1637664195, guid: 3dc00205ae580b44eb78e3f65d7ddbd1, type: 3}
+      propertyPath: timeToReload
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637664195, guid: 3dc00205ae580b44eb78e3f65d7ddbd1, type: 3}
+      propertyPath: actualTimeToReload
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc00205ae580b44eb78e3f65d7ddbd1, type: 3}
